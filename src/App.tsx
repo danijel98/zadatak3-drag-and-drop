@@ -1,26 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import users from "./users.json";
+import User from "./User";
+import DragContextProvider from "./components/DragContext";
+import DragArea from "./components/DragArea";
+import "./App.css"
 
-function App() {
+export default function App() {
+  const [items, setItems] = useState<User[]>([]);
+
+  useEffect(() => {
+    setItems([...users]);
+  }, []);
+
+  const handleDragEnd = (newUsersList: User[]) => {
+    setItems(newUsersList);
+    console.log("new", newUsersList);
+    console.log("items", items);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Drag and Drop Demo</h1>
+      <DragContextProvider items={items}>
+        <DragArea items={items} onChange={setItems} onDragEnd={handleDragEnd}>
+        </DragArea>
+      </DragContextProvider>
     </div>
   );
 }
-
-export default App;

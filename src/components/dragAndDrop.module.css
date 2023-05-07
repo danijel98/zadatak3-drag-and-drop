@@ -1,0 +1,17 @@
+.containerUserItem{
+  height: 7vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: lightsteelblue;
+  margin: 2vh;
+  min-width: 5vw;
+  border: 1px solid black;
+}
+.containerArea{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: gray;
+  min-width: 20vw;
+}
